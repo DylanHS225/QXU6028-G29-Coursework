@@ -65,11 +65,14 @@ field.set(qn('w:instr'),'PAGE')
 footer._p.append(field)
 
 text=(PACKAGE/'report.md').read_text()
+current_section=''
 for block in text.strip().split('\n\n'):
     if block.startswith('# '):
         doc.add_paragraph(block[2:],'Title')
     elif block.startswith('## '):
-        doc.add_paragraph(block[3:],'Heading 1')
+        current_section=block[3:]
+        heading=doc.add_paragraph(current_section,'Heading 1')
+        if current_section=='References': heading.paragraph_format.page_break_before=True
     elif block.startswith('!['):
         match=re.search(r'!\[(.*?)\]\((.*?)\)',block)
         p=doc.add_paragraph()
@@ -84,6 +87,8 @@ for block in text.strip().split('\n\n'):
     else:
         p=doc.add_paragraph()
         rich_text(p,block)
+        if current_section=='Transfer to a polymer field effect transistor':
+            p.paragraph_format.keep_together=True
         if block.startswith('['):
             p.paragraph_format.space_after=Pt(5)
             for run in p.runs: run.font.size=Pt(9)

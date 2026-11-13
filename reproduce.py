@@ -30,6 +30,8 @@ except ValueError:
     print('Arial is unavailable: using DejaVu Sans for figures; numerical results are unaffected.')
 BLUE, ORANGE, GREY = '#235987', '#c66a24', '#62676d'
 plt.rcParams.update({'font.family': FIGURE_FONT, 'font.size': 10,
+                     'mathtext.fontset':'custom','mathtext.rm':FIGURE_FONT,
+                     'mathtext.it':FIGURE_FONT+':italic','mathtext.bf':FIGURE_FONT+':bold',
                      'axes.spines.top': False, 'axes.spines.right': False,
                      'axes.labelsize': 10, 'legend.fontsize': 9,
                      'savefig.dpi': 300, 'axes.titlesize': 11})
