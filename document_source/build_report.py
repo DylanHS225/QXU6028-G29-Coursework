@@ -72,7 +72,7 @@ for block in text.strip().split('\n\n'):
     elif block.startswith('## '):
         current_section=block[3:]
         heading=doc.add_paragraph(current_section,'Heading 1')
-        if current_section=='References': heading.paragraph_format.page_break_before=True
+        if current_section=='Critical self assessment': heading.paragraph_format.page_break_before=True
     elif block.startswith('!['):
         match=re.search(r'!\[(.*?)\]\((.*?)\)',block)
         p=doc.add_paragraph()
