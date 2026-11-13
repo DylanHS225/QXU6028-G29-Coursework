@@ -1,0 +1,8 @@
+G29 blind run; UTC 2026-09-24T03:46:22.333531+00:00
+Data: /Users/dhs225/.codex/.chatgpt-projects/g-p-6ab0a933db988191b2f4c28b93c3d662/G29_blind_submission/pipeline/data/blind_G29; teacher manifest verified; pipeline commit: 3304d6712795891e062c5bb2786b8455a4c407d8
+L1: correction=2.26442413; n_F=3.18559795e+11 cm^-2; mobility=33804.17660023 cm^2/Vs
+L2: 43 indices, three paired repeats; building 4000 x 400 model library
+L2: hard_gap; Eg/kBT=3.25; RMS cone=0.1019990, best gap=0.0105711; hard-gap bootstrap fraction=1.000
+L3: eta0=0.0013309925, eta=1.3309925e-05; max|m|=0.03662247; 95% noise limit=0.00027442968; clear fail: maximum - 95% noise detection limit > 0.030
+Validation passed: schema, index count, 100 finite zero-mean map values
+Created three submission files in /Users/dhs225/.codex/.chatgpt-projects/g-p-6ab0a933db988191b2f4c28b93c3d662/G29_blind_submission
