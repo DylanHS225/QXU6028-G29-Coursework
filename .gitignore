@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.DS_Store
+figures/
+results.json
+run_log.txt
+source_commit.txt
+evidence/l2_fit.csv
+evidence/l2_bootstrap.csv
+evidence/l3_regularisation.csv
+evidence/l3_diagnostics.npz
+evidence/numerical_summary.json
+evidence/blind_reproduction_check.json
+evidence/runtime.json
+evidence/physics_checks.json
+evidence/fresh_checkout_validation.json
