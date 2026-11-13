@@ -1,29 +1,36 @@
 # QXU6028 G29 coursework analysis
 
-This repository contains the analysis for the G29 virtual-lab coursework. It reproduces the regular L1–L3 results and data figures and checks the archived blind-test outputs.
+This repository supports assessment of the G29 virtual-lab coursework. It reproduces the L1–L3 results and data figures for the regular dataset and verifies the archived blind-test results.
 
-## Reproduce the results
+## Reproduction
 
-From the repository root, install the dependencies and run the analysis. Python 3.14.4 was used to verify the pinned dependencies.
+From the repository root, install the pinned dependencies and run the analysis. The workflow was verified with Python 3.14.4.
 
 ```sh
 python -m pip install -r requirements.txt
 python reproduce.py
 ```
 
-The script checks the supplied data hashes, performs the analysis and writes:
+The script checks the supplied data against their SHA-256 manifests and generates the following outputs.
 
-- `results.json` for the regular G29 dataset, with the commit used for the run.
-- `figures/` with report Figures 2–6 in PNG and PDF format.
-- `evidence/` with the numerical summary, fit and reconstruction diagnostics, physics checks and blind-test comparison.
-- `run_log.txt` with the execution record.
+| Output | Contents |
+| --- | --- |
+| `results.json` | Regular G29 results in the supplied schema, including the Git commit used for the run |
+| `figures/` | Report Figures 2–6 in PNG and PDF |
+| `evidence/numerical_summary.json` | Numerical values cited in the report |
+| `evidence/l2_fit.csv`, `evidence/l2_bootstrap.csv` | L2 fits and resampling diagnostics |
+| `evidence/l3_regularisation.csv`, `evidence/l3_diagnostics.npz` | L3 sensitivity, resolution and noise diagnostics |
+| `evidence/physics_checks.json`, `evidence/blind_reproduction_check.json` | Unit, sign and schema checks and comparison with the original blind-test results |
+| `run_log.txt`, `evidence/runtime.json` | Execution log, dependency versions and random seeds |
 
-The script uses fixed seeds for the L2 resampling and L3 noise simulations. The report plots use Arial when it is installed. The fallback font changes the typography only. Figure 1 is the retained device illustration in `assets/fig1_device_schematic.png`.
+The plots use Arial when available and DejaVu Sans otherwise. The numerical results are independent of the font.
 
-## Inputs and records
+## Data and evidence
 
-- `data/regular_G29/` and `data/blind_G29/` contain the supplied G29 inputs and manifests.
-- `evidence/blind_archive/` contains the original blind results, run log and pipeline commit. The reproduction command reads these records and writes its comparison separately.
-- `evidence/blind_pipeline_history.bundle` preserves the available original blind pipeline history. Run `git clone evidence/blind_pipeline_history.bundle blind-history` to inspect it.
-- `PROVENANCE.md` links to the separate L1 and L2 repositories and identifies the earlier commits. The history on `main` covers the final integrated analysis and report preparation.
-- `assets/` and `evidence/ai_corrections/` retain the prompts and before-and-after records. The final report, signed contribution statement and AI records are supplied through QMplus.
+- `data/regular_G29/` and `data/blind_G29/` contain the supplied G29 inputs, manifests and output templates.
+- `evidence/blind_archive/` preserves the original blind result, run log and pipeline commit. `evidence/blind_pipeline_history.bundle` preserves the blind pipeline's Git history.
+- `evidence/announced_specification.pdf` records the 3.0% wafer uniformity criterion.
+- `assets/fig1_device_schematic.png` is the illustration used in report Figure 1. Its prompts and the AI correction evidence are in `assets/` and `evidence/ai_corrections/`.
+- [PROVENANCE.md](PROVENANCE.md) identifies the earlier L1, L2 and blind-test code versions.
+
+The final report, signed contribution statement and AI records are submitted through QMplus.
