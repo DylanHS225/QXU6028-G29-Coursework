@@ -15,14 +15,21 @@ os.environ.setdefault('MPLCONFIGDIR', str(Path(tempfile.gettempdir())/'qxu6028-m
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from matplotlib import font_manager
 from matplotlib.ticker import MaxNLocator, ScalarFormatter
 import course_methods as cm
 
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / 'data' / 'regular_G29'
 OUT = ROOT / 'figures'
+try:
+    font_manager.findfont('Arial',fallback_to_default=False)
+    FIGURE_FONT='Arial'
+except ValueError:
+    FIGURE_FONT='DejaVu Sans'
+    print('Arial is unavailable: using DejaVu Sans for figures; numerical results are unaffected.')
 BLUE, ORANGE, GREY = '#235987', '#c66a24', '#62676d'
-plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 10,
+plt.rcParams.update({'font.family': FIGURE_FONT, 'font.size': 10,
                      'axes.spines.top': False, 'axes.spines.right': False,
                      'axes.labelsize': 10, 'legend.fontsize': 9,
                      'savefig.dpi': 300, 'axes.titlesize': 11})
@@ -165,6 +172,7 @@ def analyse_l2():
     axes[0].axhline(0,color='0.5',lw=.7)
     axes[0].set(xlabel='Measurement index',ylabel='Raw $R_H$ (supplied units)',title='(a) Signed Hall repeats')
     axes[0].ticklabel_format(axis='y',style='sci',scilimits=(0,0))
+    axes[0].set_title('(a) Signed Hall repeats',pad=15)
     axes[0].legend(fontsize=8)
     axes[1].plot(gaps[1:],rms[1:],color=BLUE)
     axes[1].axhline(.85*rms[0],color=GREY,ls=':',label='0.85 × cone RMS')
@@ -318,7 +326,7 @@ def main():
         'schema_keys_match':True})
     save_json(ROOT/'evidence/runtime.json',{'python':sys.version.split()[0],
         'numpy':np.__version__,'pandas':pd.__version__,'matplotlib':matplotlib.__version__,
-        'platform':platform.platform(),'pipeline_commit':results['pipeline_commit'],
+        'platform':platform.platform(),'figure_font':FIGURE_FONT,'pipeline_commit':results['pipeline_commit'],
         'seeds':{'L2':cm.SEED_L2,'L3':cm.SEED_L3}})
 
 

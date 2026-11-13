@@ -4,7 +4,7 @@ This package regenerates the regular-data numerical results and all five data fi
 
 ## Reproduce the analysis
 
-Use Python 3.11 or newer. The tested interpreter was Python 3.14.4 with the exact packages in `requirements.txt`. No SciPy, proprietary software, network data source or hidden truth is required.
+Use Python 3.11 or newer. The tested interpreter was Python 3.14.4 with the exact packages in `requirements.txt`. No SciPy, network data source or hidden truth is required. The delivered data figures use the installed Arial font. Arial must be available for identical typography; on systems without it, the script falls back to DejaVu Sans and reports this explicitly. Numerical values are unaffected.
 
 ```sh
 python -m pip install -r requirements.txt
@@ -38,7 +38,7 @@ Install dependencies first if needed. Generated outputs are deliberately untrack
 
 ## Read the report and process records
 
-The Word and PDF reports are supplied beside this package. `report.md` is the editable source text. A conservative whitespace count, including captions and references, is below 2,500 words. Transfer is below 200 words and the self-assessment is within 150–200 words. The figures and numbers are generated from the raw data; the report prose is a reviewed static interpretation of those outputs.
+The Word and PDF reports are supplied beside this package. The Word report uses Arial and editable native Office equations, subscripts and superscripts; Unicode script characters are not used to simulate mathematical formatting. The document build sources are retained in `document_source/`. `report.md` is the editable source text. A conservative whitespace count, including captions and references, is below 2,500 words. Transfer is below 200 words and the self-assessment is within 150–200 words. The figures and numbers are generated from the raw data; the report prose is a reviewed static interpretation of those outputs.
 
 Required companion records are `AI_error_ledger.md`, `AI_usage_log.md`, `contribution_statement.md` and `PROVENANCE.md`. The self-assessment is in the main report. The ledger contains one verified contact-topology physics error and one verified uncertainty-interpretation error. Two additional physics safeguards are clearly labelled preventive checks and are not claimed as historical failures. The rubric's usual expectation of two genuine physics errors is not asserted as satisfied.
 
